@@ -1,0 +1,4 @@
+/.vscode
+/build
+/modSync.spec
+/src/__pycache__

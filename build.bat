@@ -1,1 +1,1 @@
-pyinstaller --onefile src/modSync.py
+python setup.py bdist_msi

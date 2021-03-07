@@ -32,10 +32,10 @@ pip install wget
 pip install py7zr
 ```
 
-#### pyinstaller (optional)
+#### cx_freeze (optional)
 
 ```bash
-pip install pyinstaller
+pip install cx_freeze
 ```
 
 ## Contributing

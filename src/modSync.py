@@ -86,10 +86,28 @@ def copyFiles(dest):
         printError("Copy failed")
     print("Done")
 
+def removeDlls(gamePath):
+    try:        
+        with open(gamePath+"\\BepInEx\\plugins\\Versions.json") as f:
+            mods = json.load(f)
+    except:
+        printError("Can't read the Versions file")
+    
+    for mod in mods:        
+        if mods[mod] == "removed":            
+
+            if os.path.isdir(gamePath+"\\BepInEx\\plugins\\"+mod):
+                print("Remove {} from the plugins folder".format(mod))
+                shutil.rmtree(gamePath+"\\BepInEx\\plugins\\"+mod)
+            if os.path.isfile(gamePath+"\\BepInEx\\plugins\\{}.dll".format(mod)):
+                print("Remove {} from the plugins folder".format(mod))
+                os.remove(gamePath+"\\BepInEx\\plugins\\{}.dll".format(mod))
+
 def main():
     modURL = None
     steamappID = None
     gamePath = None
+
     try:
         with open("config.json") as f:
             data = json.load(f)
@@ -105,6 +123,9 @@ def main():
 
     extractArchive(os.path.basename(modURL))
     copyFiles(gamePath)
+
+    if(data["checkDllRemove"]):
+        removeDlls(gamePath)
 
 
 if __name__ == '__main__':

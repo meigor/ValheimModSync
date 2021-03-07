@@ -8,6 +8,7 @@ import shutil
 
 def printError(text):
     print("ERROR: {}".format(text))
+    input()
     sys.exit()
 
 def readACF(acfFile):
